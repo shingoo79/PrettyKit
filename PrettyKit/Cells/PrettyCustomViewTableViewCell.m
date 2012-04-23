@@ -59,7 +59,7 @@
     if (self.customView != nil) 
     {    
         self.customView.frame = self.innerFrame;
-        
+        cellFrameNotEditing = self.innerFrame;
 		self.customView.layer.mask = self.mask;
         self.customView.layer.masksToBounds = YES;
         
@@ -68,6 +68,17 @@
             [self addSubview:self.customView];
         }
     }
+}
+
+- (void)layoutSubviews
+{
+    CGRect b = cellFrameNotEditing;
+    b.size.width -= (self.editing) ? 32 : 0;
+    b.origin.x += (self.editing) ? 32 : 0; // start 30px left unless editing
+    self.customView.frame = b;
+    self.customView.layer.mask = self.mask;
+    self.customView.layer.masksToBounds = YES;
+    [super layoutSubviews];
 }
 
 - (void) setBackgroundColor:(UIColor *)backgroundColor 

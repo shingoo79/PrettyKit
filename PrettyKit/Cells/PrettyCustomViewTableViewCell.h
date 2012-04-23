@@ -38,7 +38,10 @@
  rounded corners.
 */
 
-@interface PrettyCustomViewTableViewCell : PrettyTableViewCell
+@interface PrettyCustomViewTableViewCell : PrettyTableViewCell{
+@private
+    CGRect cellFrameNotEditing;
+}
 
 /** Holds a reference to the custom view. */
 @property (nonatomic, retain) UIView *customView;
